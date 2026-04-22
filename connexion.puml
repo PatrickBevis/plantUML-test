@@ -1,0 +1,51 @@
+@startuml telnet
+|#Lightgreen|**Client**|
+start
+:Connection page;
+|**Daemon**|
+:Ask for credentials;
+
+repeat
+    |**Client**|
+    :Enter credentials;
+    |**Daemon**|
+    :Validate credentials;
+    if (Credentials valid?) then (yes)
+        :Grant access;
+        break
+    else (no)
+        :Deny access;
+        |#Orange|**Server**|
+        :Log failed attempt;
+        |**Daemon**|
+    endif
+repeat while (Attempts < 3) is (yes)
+
+if (Access granted?) then (yes)
+    :Open terminal;
+    repeat
+        |**Client**|
+        :Enter command;
+        |**Daemon**|
+        :Process command;
+        if (Command = exit?) then (yes)
+            break
+        else (no)
+            |**Server**|
+            :Execute command;
+            |**Daemon**|
+            :Return result;
+            |Client|
+            :Display result;
+        endif
+    |**Daemon**|
+    repeat while (Session active?) is (yes)
+    :Disconnect client;
+else (no)
+    :Terminate connection;
+    stop
+endif
+
+stop
+
+@enduml

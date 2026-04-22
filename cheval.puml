@@ -1,0 +1,33 @@
+@startuml le cheval
+
+skin rose
+
+:Acheteur: as ACH
+:Haras Nationaux:  as HNAT
+
+( Preparation Achat cheval) as Ach
+(Affiliation) as AFF
+(Consulter les vaccinations) as VAC
+(Robe) as ROBE
+(Caractere) as CAR
+(Achat Etalon) as ETALON
+(Achat Jument) as JUMENT 
+(Examen Maternité) as MAT
+(Vérification Poulain) as POULAIN
+
+ACH -> Ach
+HNAT -> AFF
+
+Ach ..> VAC: includes
+
+AFF ..> ROBE : extends
+AFF ..> CAR : extends
+
+Ach <|-- ETALON
+Ach <|-- JUMENT
+
+JUMENT ..> MAT : includes
+POULAIN ..> JUMENT : extends
+
+AFF ..>Ach: extends
+@enduml

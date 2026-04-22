@@ -1,0 +1,21 @@
+
+`@startuml
+Utilisateur -> Serveur : Requête GET /index
+Serveur --> Utilisateur : 200 OK (HTML)
+@enduml`
+
+`@startuml
+class Vehicule {
+  +String marque
+  +demarrer()
+}
+class Voiture extends Vehicule {
+  -int nbPortes
+}
+@enduml`
+
+`@startuml
+[*] --> Idle
+Idle --> Processing : Nouveau document
+Processing --> Idle : Terminé
+@enduml`

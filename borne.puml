@@ -1,0 +1,33 @@
+@startuml Borne de Recharge
+skinparam actorStyle awesome
+left to right direction
+
+actor "Utilisateur" as User
+actor "Technicien" as Tech
+actor "Serveur Monétique" as Server <<System>>
+
+rectangle "Système de Borne de Recharge" {
+    usecase "S'authentifier" as UC_Auth
+    usecase "Lancer la recharge" as UC_Charge
+    usecase "Consulter l'état" as UC_Status
+    usecase "Relever les compteurs" as UC_Measure
+    usecase "Effectuer un diagnostic" as UC_Diag
+    usecase "Envoi SMS de notification" as UC_SMS
+    
+    ' Relations d'inclusion et d'extension
+    UC_Charge ..> UC_Auth : <<include>>
+    UC_SMS ..> UC_Charge : <<extend>>
+}
+
+' Liaisons Acteurs -> Cas d'utilisation
+User -- UC_Auth
+User -- UC_Charge
+User -- UC_Status
+
+Tech -- UC_Measure
+Tech -- UC_Diag
+Tech -- UC_Auth
+
+' Liaison vers le système externe
+UC_Auth -- Server
+@endum

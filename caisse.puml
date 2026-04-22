@@ -1,0 +1,34 @@
+@startuml caisse
+
+left to right direction
+
+:client: as CLI
+:caissier: as CAI
+:systeme de gestion de stock: as SGD
+:responsable du magasin: as RM
+
+(arrive à la caisse) as cai
+(enregistre le code barre) as code
+(enregistre la quantité) as qté
+(affiche le prix et libellé) as pri
+(choisi son mode de paiment) as pai
+(paiement en espece) as esp
+(paiement en chèque) as chq
+(paiment en CB) as cb
+(enregistre la vente) as vnt
+(imprime un ticket) as tic
+(transmet le ticket imprimé au client) as ticc
+(présente des coupons de réduction) as cr
+
+CLI -- cai
+CAI -- code
+code ..> qté :include
+SGB -- pri
+CLI -- pai
+pai <|-- esp
+pai <|-- chq
+pai <|-- cb
+CAI -- vnt
+
+
+@enduml
