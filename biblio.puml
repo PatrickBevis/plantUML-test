@@ -1,0 +1,13 @@
+@startuml
+title bibliotheque
+class Livre {
+  -titre : String
+  -auteur : String
+}
+
+class Bibliotheque {
+  -nom : String
+}
+
+Bibliotheque -- Livre : contient >
+@enduml

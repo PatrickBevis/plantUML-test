@@ -1,0 +1,38 @@
+@startuml 
+title Restaurant
+
+|#LightSkyBlue|**Client**|
+start
+:arrive au restaurant;
+|**Serveur**|
+:installe le client et présente le menu;
+repeat
+:prend la commande;
+|**Client**|
+repeat while(choisi son plat) is (non)
+|**Serveur**|
+:transmet la commande à la cusine;
+
+fork
+if(boisson) then (oui)
+:apporte les boissons;
+else (non)
+endif
+:apporte pain, couverts;
+fork again
+|#LightPink|**Cuisine**|
+:prépare les plats;
+|**Serveur**|
+end fork
+:apporte les plats;
+|**Client**|
+while(refuse le plat) is (oui)
+|**Serveur**|
+:rapporte à la Cuisine;
+|**Cuisine**|
+:refait un plat;
+endwhile (non)
+
+
+
+@enduml
